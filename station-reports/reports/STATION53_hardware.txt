@@ -1,0 +1,267 @@
+=============================================
+ HARDWARE ASSESSMENT — STATION53
+ Date: 2026-06-10 12:31
+=============================================
+
+--- TOOLS AVAILABLE ---
+  dmidecode: YES
+  lscpu: YES
+  lspci: YES
+  lsblk: YES
+  hdparm: YES
+  smartctl: NOT FOUND (some info will be missing)
+  lshw: YES
+
+--- SYSTEM IDENTITY ---
+Hostname tag: STATION53
+	Manufacturer: System manufacturer
+	Product Name: System Product Name
+	Serial Number: System Serial Number
+	SKU Number: To Be Filled By O.E.M.
+	Vendor: American Megatrends Inc.
+	Version: 2101
+	Release Date: 12/02/2014
+
+--- CPU ---
+Architecture:                            x86_64
+Model name:                              AMD FX(tm)-8300 Eight-Core Processor
+BIOS Model name:                         AMD FX(tm)-8300 Eight-Core Processor                 To Be Filled By O.E.M. CPU @ 3.3GHz
+Thread(s) per core:                      1
+Core(s) per socket:                      8
+Socket(s):                               1
+CPU max MHz:                             3300.0000
+CPU min MHz:                             1400.0000
+
+AVX2 Support:
+AVX2 Support: NO
+
+--- MEMORY ---
+Total Installed: 7.7Gi
+
+Max Capacity:
+	Maximum Capacity: 16 GB
+	Number Of Devices: 4
+
+DIMM Slots:
+	Size: 2 GB
+	Locator: DIMM0
+	Bank Locator: BANK0
+	Type: Other
+	Speed: 1600 MT/s
+	Manufacturer: Manufacturer0
+	Part Number: PartNum0
+	Size: 2 GB
+	Locator: DIMM1
+	Bank Locator: BANK1
+	Type: Other
+	Speed: 1600 MT/s
+	Manufacturer: Manufacturer1
+	Part Number: PartNum1
+	Size: 2 GB
+	Locator: DIMM2
+	Bank Locator: BANK2
+	Type: Other
+	Speed: 1600 MT/s
+	Manufacturer: Manufacturer2
+	Part Number: PartNum2
+	Size: 2 GB
+	Locator: DIMM3
+	Bank Locator: BANK3
+	Type: Other
+	Speed: 1600 MT/s
+	Manufacturer: Manufacturer3
+	Part Number: PartNum3
+
+--- STORAGE ---
+Block Devices (excluding live USB):
+NAME    SIZE MODEL       ROTA TRAN
+sda   119.2G ADATA SP600    0 sata
+sdc    57.3G Cruzer         1 usb
+
+Drive Details:
+  === /dev/sda ===
+    Model Number:       ADATA SP600
+    Serial Number:      2E4920027162
+    Transport:          Serial, ATA8-AST, SATA 1.0a, SATA II Extensions, SATA Rev 2.5, SATA Rev 2.6, SATA Rev 3.0
+    device size with M = 1024*1024:      122104 MBytes
+    device size with M = 1000*1000:      128035 MBytes (128 GB)
+    *	SMART Command Transport (SCT) feature set
+
+  === /dev/sdc ===
+    device size with M = 1024*1024:           0 MBytes
+    device size with M = 1000*1000:           0 MBytes
+
+--- GPU ---
+Detected GPUs:
+01:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Turks GL [FirePro V4900]
+
+  === GPU at 01:00.0 ===
+    	Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Turks GL [FirePro V4900]
+    	Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    	Memory at feae0000 (64-bit, non-prefetchable) [size=128K]
+    	Kernel driver in use: radeon
+
+Nvidia GPU Present: NO
+GPU Memory Region: 	Memory at d0000000 (64-bit, prefetchable) [size=256M]
+
+--- MOTHERBOARD ---
+	Manufacturer: ASUSTeK Computer INC.
+	Product Name: M5A78L-M/USB3
+	Version: Rev X.0x
+	Serial Number: 150239077300932
+
+--- EXPANSION SLOTS ---
+	Designation: PCIEX1_1
+	Type: 32-bit PCI Express
+	Current Usage: Available
+	Length: Short
+	Designation: PCIE16X
+	Type: 32-bit PCI Express
+	Current Usage: In Use
+	Length: Short
+	Designation: PCI1
+	Type: 32-bit PCI
+	Current Usage: Available
+	Length: Short
+	Designation: PCI2
+	Type: 32-bit PCI
+	Current Usage: Available
+	Length: Short
+
+--- OPTICAL DRIVES ---
+None detected
+
+--- NETWORK ADAPTERS ---
+03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+
+MAC Addresses:
+  08:62:66:9f:3c:75
+
+--- CHASSIS / CASE ---
+	Manufacturer: Chassis Manufacture
+	Type: Desktop
+	Height: Unspecified
+
+--- POWER SUPPLY ---
+*** CANNOT DETECT VIA SOFTWARE ***
+Physically check the PSU label and note:
+  - Brand/Model:
+  - Wattage:
+  - 80 PLUS rating:
+  - Modular? (Yes/No):
+
+--- FULL PCI DEVICE LIST ---
+00:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] RS780 Host Bridge
+00:02.0 PCI bridge: Advanced Micro Devices, Inc. [AMD] RS780 PCI to PCI bridge (ext gfx port 0)
+00:07.0 PCI bridge: Advanced Micro Devices, Inc. [AMD] RS780/RS880 PCI to PCI bridge (PCIE port 3)
+00:0a.0 PCI bridge: Advanced Micro Devices, Inc. [AMD] RS780/RS880 PCI to PCI bridge (PCIE port 5)
+00:11.0 SATA controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 SATA Controller [IDE mode]
+00:12.0 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+00:12.1 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0 USB OHCI1 Controller
+00:12.2 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 USB EHCI Controller
+00:13.0 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+00:13.1 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0 USB OHCI1 Controller
+00:13.2 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 USB EHCI Controller
+00:14.0 SMBus: Advanced Micro Devices, Inc. [AMD/ATI] SBx00 SMBus Controller (rev 3c)
+00:14.1 IDE interface: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 IDE Controller
+00:14.2 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] SBx00 Azalia (Intel HDA)
+00:14.3 ISA bridge: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 LPC host controller
+00:14.4 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] SBx00 PCI to PCI Bridge
+00:14.5 USB controller: Advanced Micro Devices, Inc. [AMD/ATI] SB7x0/SB8x0/SB9x0 USB OHCI2 Controller
+00:18.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 0
+00:18.1 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 1
+00:18.2 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 2
+00:18.3 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 3
+00:18.4 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 4
+00:18.5 Host bridge: Advanced Micro Devices, Inc. [AMD] Family 15h Processor Function 5
+01:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Turks GL [FirePro V4900]
+01:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Turks HDMI Audio [Radeon HD 6500/6600 / 6700M Series]
+02:00.0 USB controller: ASMedia Technology Inc. ASM1042A USB 3.0 Host Controller
+03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+
+--- HARDWARE TREE ---
+H/W path                   Device     Class          Description
+================================================================
+                                      system         System Product Name (To Be Filled By O.E.M.)
+/0                                    bus            M5A78L-M/USB3
+/0/0                                  memory         64KiB BIOS
+/0/4                                  processor      AMD FX(tm)-8300 Eight-Core Processor
+/0/4/5                                memory         384KiB L1 cache
+/0/4/6                                memory         8MiB L2 cache
+/0/4/7                                memory         8MiB L3 cache
+/0/32                                 memory         8GiB System Memory
+/0/32/0                               memory         2GiB DIMM Synchronous 1600 MHz (0.6 ns)
+/0/32/1                               memory         2GiB DIMM Synchronous 1600 MHz (0.6 ns)
+/0/32/2                               memory         2GiB DIMM Synchronous 1600 MHz (0.6 ns)
+/0/32/3                               memory         2GiB DIMM Synchronous 1600 MHz (0.6 ns)
+/0/100                                bridge         RS780 Host Bridge
+/0/100/2                              bridge         RS780 PCI to PCI bridge (ext gfx port 0)
+/0/100/2/0                 /dev/fb0   display        Turks GL [FirePro V4900]
+/0/100/2/0.1               card1      multimedia     Turks HDMI Audio [Radeon HD 6500/6600 / 6700M Series]
+/0/100/2/0.1/0             input9     input          HDA ATI HDMI HDMI/DP,pcm=3
+/0/100/7                              bridge         RS780/RS880 PCI to PCI bridge (PCIE port 3)
+/0/100/7/0                            bus            ASM1042A USB 3.0 Host Controller
+/0/100/7/0/0               usb8       bus            xHCI Host Controller
+/0/100/7/0/1               usb9       bus            xHCI Host Controller
+/0/100/a                              bridge         RS780/RS880 PCI to PCI bridge (PCIE port 5)
+/0/100/a/0                 enp3s0     network        RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller
+/0/100/11                  scsi3      storage        SB7x0/SB8x0/SB9x0 SATA Controller [IDE mode]
+/0/100/11/0.0.0            /dev/sda   disk           128GB ADATA SP600
+/0/100/11/0.0.0/1          /dev/sda1  volume         50MiB Windows NTFS volume
+/0/100/11/0.0.0/2          /dev/sda2  volume         118GiB Windows NTFS volume
+/0/100/11/0.0.0/3          /dev/sda3  volume         505MiB Windows NTFS volume
+/0/100/12                             bus            SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+/0/100/12/1                usb1       bus            OHCI PCI host controller
+/0/100/12.1                           bus            SB7x0 USB OHCI1 Controller
+/0/100/12.1/1              usb4       bus            OHCI PCI host controller
+/0/100/12.1/1/2            input5     input          PIXART USB OPTICAL MOUSE
+/0/100/12.1/1/3            input6     input          SONiX AMAZON MD005 Wired Keyboard System Control
+/0/100/12.2                           bus            SB7x0/SB8x0/SB9x0 USB EHCI Controller
+/0/100/12.2/1              usb2       bus            EHCI Host Controller
+/0/100/13                             bus            SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+/0/100/13/1                usb5       bus            OHCI PCI host controller
+/0/100/13.1                           bus            SB7x0 USB OHCI1 Controller
+/0/100/13.1/1              usb6       bus            OHCI PCI host controller
+/0/100/13.2                           bus            SB7x0/SB8x0/SB9x0 USB EHCI Controller
+/0/100/13.2/1              usb3       bus            EHCI Host Controller
+/0/100/13.2/1/6            scsi7      storage        Cruzer
+/0/100/13.2/1/6/0.0.0      /dev/sdc   disk           61GB Cruzer
+/0/100/13.2/1/6/0.0.0/0    /dev/sdc   disk           61GB
+/0/100/13.2/1/6/0.0.0/0/1  /dev/sdc1  volume         57GiB HPFS/NTFS partition
+/0/100/13.2/1/6/0.0.0/0/2  /dev/sdc2  volume         32MiB Windows FAT volume
+/0/100/14                             bus            SBx00 SMBus Controller
+/0/100/14.1                           storage        SB7x0/SB8x0/SB9x0 IDE Controller
+/0/100/14.2                card0      multimedia     SBx00 Azalia (Intel HDA)
+/0/100/14.2/0              input10    input          HDA ATI SB Rear Mic
+/0/100/14.2/1              input11    input          HDA ATI SB Front Mic
+/0/100/14.2/2              input12    input          HDA ATI SB Line
+/0/100/14.2/3              input13    input          HDA ATI SB Line Out Front
+/0/100/14.2/4              input14    input          HDA ATI SB Line Out Surround
+/0/100/14.2/5              input15    input          HDA ATI SB Line Out CLFE
+/0/100/14.2/6              input16    input          HDA ATI SB Line Out Side
+/0/100/14.2/7              input17    input          HDA ATI SB Front Headphone
+/0/100/14.3                           bridge         SB7x0/SB8x0/SB9x0 LPC host controller
+/0/100/14.3/0                         system         PnP device PNP0c02
+/0/100/14.3/1                         system         PnP device PNP0b00
+/0/100/14.3/2                         printer        PnP device PNP0400
+/0/100/14.3/3                         communication  PnP device PNP0501
+/0/100/14.3/4                         system         PnP device PNP0c02
+/0/100/14.3/5                         system         PnP device PNP0c02
+/0/100/14.3/6                         system         PnP device PNP0c02
+/0/100/14.3/7                         system         PnP device PNP0c02
+/0/100/14.3/8                         system         PnP device PNP0c01
+/0/100/14.4                           bridge         SBx00 PCI to PCI Bridge
+/0/100/14.5                           bus            SB7x0/SB8x0/SB9x0 USB OHCI2 Controller
+/0/100/14.5/1              usb7       bus            OHCI PCI host controller
+/0/101                                bridge         Family 15h Processor Function 0
+/0/102                                bridge         Family 15h Processor Function 1
+/0/103                                bridge         Family 15h Processor Function 2
+/0/104                                bridge         Family 15h Processor Function 3
+/0/105                                bridge         Family 15h Processor Function 4
+/0/106                                bridge         Family 15h Processor Function 5
+/1                         input0     input          Power Button
+/2                         input1     input          Power Button
+
+=============================================
+ END ASSESSMENT — STATION53
+=============================================

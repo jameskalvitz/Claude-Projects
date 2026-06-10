@@ -12,6 +12,7 @@ Running log of decisions, gotchas, and follow-ups for the QualFab decommission p
 
 - **2026-06-10** — STATION78 (i5-4690K, AVX2, ASUS Z87-A) is the current top candidate for the LLM/server "Frankenstein" build. Has 3 free DIMM slots (max 32GB) and 2 free PCIe x16 slots for a future GPU.
 - **2026-06-10** — STATIONUNKNOWN (Phenom II X4 955, no AVX2) leans toward Retro Gaming rather than the LLM build.
+- **2026-06-10** — STATION53 (FX-8300, no AVX2, has AMD FirePro V4900 dGPU) leans toward Retro Gaming. Its 8 cores are decent for older games, and the FirePro V4900 (256MB VRAM) could be pulled as a donor GPU for another build if needed (it's weak/old, mainly useful for basic display output).
 
 ## Gotchas / lessons learned
 
