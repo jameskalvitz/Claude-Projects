@@ -57,12 +57,17 @@ dmidecode -t memory 2>/dev/null | awk '/Memory Device/,/^$/' | grep -E 'Locator:
 echo ""
 
 echo "--- STORAGE ---"
-echo "Block Devices:"
-lsblk -d -o NAME,SIZE,MODEL,ROTA,TRAN 2>/dev/null | grep -v 'loop\|sr'
+echo "Block Devices (excluding live USB):"
+USB_BOOT=$(findmnt -n -o SOURCE / 2>/dev/null | sed 's/[0-9]*$//' | sed 's|/dev/||')
+lsblk -d -o NAME,SIZE,MODEL,ROTA,TRAN 2>/dev/null | grep -v "loop\|sr\|${USB_BOOT:-NOUSBMATCH}"
 echo ""
 echo "Drive Details:"
 for disk in /dev/sd? /dev/nvme?n?; do
     [ -e "$disk" ] || continue
+    # Skip the USB boot drive
+    if [ -n "$USB_BOOT" ] && echo "$disk" | grep -q "$USB_BOOT"; then
+        continue
+    fi
     echo "  === $disk ==="
     hdparm -I "$disk" 2>/dev/null | grep -E 'Model Number|Serial Number|device size|Transport' | sed 's/^[[:space:]]*/    /'
     smartctl -i "$disk" 2>/dev/null | grep -E 'Model|Serial|Capacity|Rotation|Form Factor' | sed 's/^/    /'
