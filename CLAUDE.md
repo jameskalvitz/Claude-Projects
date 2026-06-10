@@ -32,4 +32,4 @@ See `station-reports/TRIAGE.md` for the full table. As of the last update:
 - **STATION78** — Intel i5-4690K w/ AVX2, ASUS Z87-A, room to expand RAM/GPU → top LLM/server candidate (BIOS is outdated, AMI 2005 from 06/03/2014 — check ASUS site for updates before any CPU swap)
 - **STATION53** — AMD FX-8300 (8c), no AVX2, has a discrete AMD FirePro V4900 GPU → leaning Retro Gaming; GPU could be a donor part
 
-See `docs/notes.md` for more detail and open follow-ups.
+See `docs/notes.md` for more detail, open follow-ups, and the **Cross-Reference Phase rules** (do not start any builds until all stations are assessed).

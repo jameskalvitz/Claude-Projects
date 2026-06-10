@@ -2,6 +2,18 @@
 
 Running log of decisions, gotchas, and follow-ups for the QualFab decommission project. Add new entries at the top.
 
+## Cross-Reference Phase — Rules
+
+These rules govern how parts get matched across all stations once assessment is complete. **Do not begin any builds until ALL machines are assessed.**
+
+- Match the best GPU to the best case with the best PSU.
+- Keep matched RAM pairs together — never split a kit.
+- DDR3 RAM stays with DDR3-compatible builds only.
+- FirePro V7900 + EVGA 430W are a natural pair — enough wattage for that card.
+- GTX 750 only needs ~300W — can pair with lower-wattage PSUs found later.
+- LLM build gets first pick of any Nvidia GTX 1080+ found in remaining machines.
+- If no LLM-capable GPU (Nvidia GTX 1080+) is found in salvage, the LLM build is not possible from salvage alone.
+
 ## Open follow-ups
 
 - [ ] PSU brand/wattage/80 PLUS rating — not yet recorded for STATIONUNKNOWN or STATION78 (needs physical label check)
