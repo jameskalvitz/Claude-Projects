@@ -9,4 +9,4 @@ Quick-glance summary of each station's hardware and what it's earmarked for. Ful
 
 | Station | CPU | RAM | Storage | GPU | AVX2 | Notes | Target |
 |---|---|---|---|---|---|---|---|
-| STATIONUNKNOWN | AMD Phenom II X4 955 @ 3.2GHz | 8GB (4x DIMM, 2 populated) | Samsung 850 EVO 120GB SSD | None (onboard) | No | Gigabyte GA-78LMT-S2P, AM3 socket | TBD |
+| STATIONUNKNOWN | AMD Phenom II X4 955 @ 3.2GHz | 8GB (2x4GB, both slots populated, 2 free) | Samsung 850 EVO 120GB SSD | Unknown — lspci failed (pci.ids I/O error), needs manual check | No | Gigabyte GA-78LMT-S2P (AM3, 2012), no AVX2 → not LLM-suitable. PSU not yet checked. | Retro Gaming (likely) |

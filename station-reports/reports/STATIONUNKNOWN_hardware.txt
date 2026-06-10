@@ -1,0 +1,135 @@
+=============================================
+ HARDWARE ASSESSMENT — STATIONUNKNOWN
+ Date: 2026-06-10 10:49
+=============================================
+
+--- TOOLS AVAILABLE ---
+  dmidecode: YES
+  lscpu: YES
+  lspci: YES
+  lsblk: YES
+  hdparm: YES
+  smartctl: NOT FOUND (some info will be missing)
+  lshw: YES
+
+--- SYSTEM IDENTITY ---
+Hostname tag: STATIONUNKNOWN
+	Manufacturer: Gigabyte Technology Co., Ltd.
+	Product Name: GA-78LMT-S2P
+	Serial Number:
+	SKU Number:
+	Vendor: Award Software International, Inc.
+	Version: F3
+	Release Date: 10/18/2012
+
+--- CPU ---
+Architecture:                            x86_64
+Model name:                              AMD Phenom(tm) II X4 955 Processor
+BIOS Model name:                         AMD Phenom(tm) II X4 955 Processor   CPU @ 3.2GHz
+Thread(s) per core:                      1
+Core(s) per socket:                      4
+Socket(s):                               1
+CPU max MHz:                             3200.0000
+CPU min MHz:                             800.0000
+
+AVX2 Support:
+AVX2 Support: NO
+
+--- MEMORY ---
+Total Installed: 7.2Gi
+
+Max Capacity:
+	Maximum Capacity: 8 GB
+	Number Of Devices: 2
+
+DIMM Slots:
+	Size: 4 GB
+	Locator: A0
+	Bank Locator: Bank0/1
+	Speed: 1333 MT/s
+	Manufacturer: None
+	Part Number: None
+	Size: 4 GB
+	Locator: A1
+	Bank Locator: Bank2/3
+	Speed: 1333 MT/s
+	Manufacturer: None
+	Part Number: None
+
+--- STORAGE ---
+Block Devices (excluding live USB):
+NAME    SIZE MODEL                     ROTA TRAN
+sda   111.8G Samsung SSD 850 EVO 120GB    0 sata
+sdc    57.3G Cruzer                       1 usb
+
+Drive Details:
+  === /dev/sda ===
+    Model Number:       Samsung SSD 850 EVO 120GB
+    Serial Number:      S21TNSAG223720E
+    Transport:          Serial, ATA8-AST, SATA 1.0a, SATA II Extensions, SATA Rev 2.5, SATA Rev 2.6, SATA Rev 3.0
+    device size with M = 1024*1024:      114473 MBytes
+    device size with M = 1000*1000:      120034 MBytes (120 GB)
+    *	SMART Command Transport (SCT) feature set
+
+  === /dev/sdc ===
+    device size with M = 1024*1024:           0 MBytes
+    device size with M = 1000*1000:           0 MBytes
+
+--- GPU ---
+Detected GPUs:
+lspci: I/O error at /usr/share/misc/pci.ids, line 0
+
+
+lspci: I/O error at /usr/share/misc/pci.ids, line 0
+
+lspci: I/O error at /usr/share/misc/pci.ids, line 0
+
+Nvidia GPU Present: NO
+
+--- MOTHERBOARD ---
+	Manufacturer: Gigabyte Technology Co., Ltd.
+	Product Name: GA-78LMT-S2P
+	Version: x.x
+	Serial Number:
+
+--- EXPANSION SLOTS ---
+	Designation: PCI
+	Type: 32-bit PCI
+	Current Usage: Available
+	Length: Long
+	Designation: PCI Express x16
+	Type: x16 PCI Express
+	Current Usage: Unknown
+	Length: Other
+	Designation: PCI Express x1
+	Type: x1 PCI Express
+	Current Usage: Unknown
+	Length: Other
+
+--- OPTICAL DRIVES ---
+None detected
+
+--- NETWORK ADAPTERS ---
+lspci: I/O error at /usr/share/misc/pci.ids, line 0
+
+
+MAC Addresses:
+  74:d4:35:7d:86:64
+
+--- CHASSIS / CASE ---
+	Manufacturer: Gigabyte Technology Co., Ltd.
+	Type: Desktop
+
+--- POWER SUPPLY ---
+*** CANNOT DETECT VIA SOFTWARE ***
+Physically check the PSU label and note:
+  - Brand/Model:
+  - Wattage:
+  - 80 PLUS rating:
+  - Modular? (Yes/No):
+
+--- FULL PCI DEVICE LIST ---
+lspci: I/O error at /usr/share/misc/pci.ids, line 0
+
+00:00.0
+--- HARDWARE TREE ---
