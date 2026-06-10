@@ -26,7 +26,17 @@ if [ -z "$STATION_NAME" ]; then
     exit 1
 fi
 
-STATION_NAME=$(echo "$STATION_NAME" | tr '[:lower:]' '[:upper:]')
+# Uppercase and strip anything but letters/digits/dash/underscore.
+# Protects against stray escape-sequence bytes leaking into the
+# read when launched via the xterm fallback above.
+STATION_NAME=$(printf '%s' "$STATION_NAME" | tr '[:lower:]' '[:upper:]' | tr -cd 'A-Z0-9_-')
+
+if [ -z "$STATION_NAME" ]; then
+    echo "Hostname contained no valid characters. Cancelled."
+    echo ""
+    read -p "Press Enter to exit..."
+    exit 1
+fi
 
 echo ""
 echo "Scanning hardware for ${STATION_NAME}..."

@@ -54,6 +54,6 @@ Each assessment automatically checks:
 
 | File | Purpose |
 |---|---|
-| `run-assessment.sh` | GUI launcher (zenity popup) with terminal fallback. Installs `smartmontools`/`hdparm`/`lshw` if missing in the live session. |
+| `run-assessment.sh` | Launcher — prompts for the station hostname in a terminal (relaunches via `xterm` if double-clicked outside one). |
 | `station-assess.sh` | Core scanner. Pulls all hardware info and writes to a single text file. |
 | `usb-sysinfo.sh` | Original generic version (kept for reference). |
