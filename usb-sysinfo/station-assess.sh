@@ -5,6 +5,13 @@
 
 HOSTNAME="$1"
 OUTDIR="$2"
+
+if [ -z "$HOSTNAME" ] || [ -z "$OUTDIR" ]; then
+    echo "Usage: sudo bash station-assess.sh HOSTNAME OUTPUT_DIR" >&2
+    exit 1
+fi
+
+mkdir -p "$OUTDIR" 2>/dev/null
 OUTFILE="${OUTDIR}/${HOSTNAME}_hardware.txt"
 
 {
@@ -12,6 +19,16 @@ echo "============================================="
 echo " HARDWARE ASSESSMENT — ${HOSTNAME}"
 echo " Date: $(date '+%Y-%m-%d %H:%M')"
 echo "============================================="
+echo ""
+
+echo "--- TOOLS AVAILABLE ---"
+for tool in dmidecode lscpu lspci lsblk hdparm smartctl lshw; do
+    if command -v "$tool" &>/dev/null; then
+        echo "  $tool: YES"
+    else
+        echo "  $tool: NOT FOUND (some info will be missing)"
+    fi
+done
 echo ""
 
 echo "--- SYSTEM IDENTITY ---"

@@ -6,68 +6,68 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTPUT_DIR="$SCRIPT_DIR/output"
 mkdir -p "$OUTPUT_DIR"
 
-if [ "$EUID" -ne 0 ]; then
-    pkexec bash "$0" "$@"
-    exit $?
-fi
-
-install_if_missing() {
-    for pkg in "$@"; do
-        if ! dpkg -l "$pkg" &>/dev/null; then
-            apt-get install -y "$pkg" 2>/dev/null
-        fi
-    done
+get_hostname() {
+    if command -v zenity &>/dev/null && [ -n "$DISPLAY" ]; then
+        zenity --entry \
+            --title="QualFab Station Assessment" \
+            --text="Enter station hostname (e.g. STATION90):" \
+            --entry-text="STATION" \
+            --width=400 2>/dev/null
+    else
+        echo "" >&2
+        echo "==================================" >&2
+        echo " QualFab Station Assessment Tool" >&2
+        echo "==================================" >&2
+        echo "" >&2
+        read -p "Enter station hostname (e.g. STATION90): " name </dev/tty
+        echo "$name"
+    fi
 }
 
-install_if_missing smartmontools hdparm lshw
-
-if command -v zenity &>/dev/null; then
-    HOSTNAME=$(zenity --entry \
-        --title="QualFab Station Assessment" \
-        --text="Enter station hostname (e.g. STATION90):" \
-        --entry-text="STATION" \
-        --width=400 2>/dev/null)
-
-    if [ -z "$HOSTNAME" ]; then
-        zenity --error --text="No hostname entered. Cancelled." --width=300 2>/dev/null
-        exit 1
+show_result() {
+    local msg="$1"
+    if command -v zenity &>/dev/null && [ -n "$DISPLAY" ]; then
+        zenity --info \
+            --title="Assessment Complete" \
+            --text="$msg" \
+            --width=400 2>/dev/null
+    else
+        echo "" >&2
+        echo "$msg" >&2
+        echo "" >&2
+        read -p "Press Enter to exit..." </dev/tty
     fi
+}
 
-    HOSTNAME=$(echo "$HOSTNAME" | tr '[:lower:]' '[:upper:]')
+show_error() {
+    local msg="$1"
+    if command -v zenity &>/dev/null && [ -n "$DISPLAY" ]; then
+        zenity --error --text="$msg" --width=300 2>/dev/null
+    else
+        echo "ERROR: $msg" >&2
+    fi
+}
 
-    zenity --info --text="Scanning hardware for ${HOSTNAME}...\nThis takes about 10 seconds." --width=300 --timeout=3 2>/dev/null &
+STATION_NAME=$(get_hostname)
 
-    RESULT=$("$SCRIPT_DIR/station-assess.sh" "$HOSTNAME" "$OUTPUT_DIR")
+if [ -z "$STATION_NAME" ]; then
+    show_error "No hostname entered. Cancelled."
+    exit 1
+fi
 
-    zenity --info \
-        --title="Assessment Complete" \
-        --text="Done! Saved to:\n${RESULT}\n\nYou can shut down and move to the next machine." \
-        --width=400 2>/dev/null
+STATION_NAME=$(echo "$STATION_NAME" | tr '[:lower:]' '[:upper:]')
+
+if [ "$EUID" -ne 0 ]; then
+    echo "Elevating to root for hardware access..."
+    sudo bash "$SCRIPT_DIR/station-assess.sh" "$STATION_NAME" "$OUTPUT_DIR"
+    RESULT="${OUTPUT_DIR}/${STATION_NAME}_hardware.txt"
 else
-    echo ""
-    echo "=================================="
-    echo " QualFab Station Assessment Tool"
-    echo "=================================="
-    echo ""
-    read -p "Enter station hostname (e.g. STATION90): " HOSTNAME
+    "$SCRIPT_DIR/station-assess.sh" "$STATION_NAME" "$OUTPUT_DIR"
+    RESULT="${OUTPUT_DIR}/${STATION_NAME}_hardware.txt"
+fi
 
-    if [ -z "$HOSTNAME" ]; then
-        echo "No hostname entered. Cancelled."
-        exit 1
-    fi
-
-    HOSTNAME=$(echo "$HOSTNAME" | tr '[:lower:]' '[:upper:]')
-
-    echo ""
-    echo "Scanning hardware for ${HOSTNAME}..."
-    echo ""
-
-    RESULT=$("$SCRIPT_DIR/station-assess.sh" "$HOSTNAME" "$OUTPUT_DIR")
-
-    echo ""
-    echo "Done! Saved to: ${RESULT}"
-    echo ""
-    echo "You can shut down and move to the next machine."
-    echo ""
-    read -p "Press Enter to exit..."
+if [ -f "$RESULT" ]; then
+    show_result "Done! Saved to:\n${RESULT}\n\nYou can shut down and move to the next machine."
+else
+    show_error "Something went wrong — no output file created.\nTry running manually:\n\nsudo bash $SCRIPT_DIR/station-assess.sh $STATION_NAME $OUTPUT_DIR"
 fi
