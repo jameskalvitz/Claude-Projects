@@ -1,0 +1,250 @@
+=============================================
+ HARDWARE ASSESSMENT — STATION78
+ Date: 2026-06-10 15:56
+=============================================
+
+--- TOOLS AVAILABLE ---
+  dmidecode: YES
+  lscpu: YES
+  lspci: YES
+  lsblk: YES
+  hdparm: YES
+  smartctl: NOT FOUND (some info will be missing)
+  lshw: YES
+
+--- SYSTEM IDENTITY ---
+Hostname tag: STATION78
+	Manufacturer: ASUS
+	Product Name: All Series
+	Serial Number: System Serial Number
+	SKU Number: All
+	Vendor: American Megatrends Inc.
+	Version: 2005
+	Release Date: 06/03/2014
+
+--- CPU ---
+Architecture:                            x86_64
+Model name:                              Intel(R) Core(TM) i5-4690K CPU @ 3.50GHz
+BIOS Model name:                         Intel(R) Core(TM) i5-4690K CPU @ 3.50GHz Fill By OEM CPU @ 3.5GHz
+Thread(s) per core:                      1
+Core(s) per socket:                      4
+Socket(s):                               1
+CPU max MHz:                             3500.0000
+CPU min MHz:                             800.0000
+
+AVX2 Support: avx2
+
+--- MEMORY ---
+Total Installed: 7.4Gi
+
+Max Capacity:
+	Maximum Capacity: 32 GB
+	Number Of Devices: 4
+
+DIMM Slots:
+	Size: No Module Installed
+	Locator: ChannelA-DIMM0
+	Bank Locator: BANK 0
+	Size: 8 GB
+	Locator: ChannelA-DIMM1
+	Bank Locator: BANK 1
+	Type: DDR3
+	Speed: 1600 MT/s
+	Manufacturer: 1315
+	Part Number: CT102464BA160B.C16
+	Configured Memory Speed: 1600 MT/s
+	Size: No Module Installed
+	Locator: ChannelB-DIMM0
+	Bank Locator: BANK 2
+	Size: No Module Installed
+	Locator: ChannelB-DIMM1
+	Bank Locator: BANK 3
+
+--- STORAGE ---
+Block Devices (excluding live USB):
+NAME    SIZE MODEL                     ROTA TRAN
+sda   119.2G Samsung SSD 850 PRO 128GB    0 sata
+sdc    57.3G Cruzer                       1 usb
+
+Drive Details:
+  === /dev/sda ===
+    Model Number:       Samsung SSD 850 PRO 128GB
+    Serial Number:      S24ZNXAGA00836W
+    Transport:          Serial, ATA8-AST, SATA 1.0a, SATA II Extensions, SATA Rev 2.5, SATA Rev 2.6, SATA Rev 3.0
+    device size with M = 1024*1024:      122104 MBytes
+    device size with M = 1000*1000:      128035 MBytes (128 GB)
+    *	SMART Command Transport (SCT) feature set
+
+  === /dev/sdc ===
+    device size with M = 1024*1024:           0 MBytes
+    device size with M = 1000*1000:           0 MBytes
+
+--- GPU ---
+Detected GPUs:
+00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)
+
+  === GPU at 00:02.0 ===
+    	Subsystem: ASUSTeK Computer Inc. Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller
+    	Memory at ef800000 (64-bit, non-prefetchable) [size=4M]
+    	Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    	Kernel driver in use: i915
+
+Nvidia GPU Present: NO
+GPU Memory Region: 	Memory at ef800000 (64-bit, non-prefetchable) [size=4M]
+
+--- MOTHERBOARD ---
+	Manufacturer: ASUSTeK COMPUTER INC.
+	Product Name: Z87-A
+	Version: Rev 1.xx
+	Serial Number: 131118271300763
+
+--- EXPANSION SLOTS ---
+	Designation: PCIEX1_1
+	Type: x1 PCI Express
+	Current Usage: Available
+	Length: Short
+	Designation: PCIEX16_1
+	Type: x16 PCI Express
+	Current Usage: Available
+	Length: Long
+	Designation: PCI1
+	Type: 32-bit PCI
+	Current Usage: Available
+	Length: Short
+	Designation: PCIEX1_2
+	Type: x1 PCI Express
+	Current Usage: Available
+	Length: Short
+	Designation: PCIEX16_2
+	Type: x16 PCI Express
+	Current Usage: Available
+	Length: Long
+	Designation: PCI2
+	Type: 32-bit PCI
+	Current Usage: Available
+	Length: Short
+	Designation: PCIEX16_3
+	Type: x2 PCI Express
+	Current Usage: Available
+	Length: Long
+
+--- OPTICAL DRIVES ---
+None detected
+
+--- NETWORK ADAPTERS ---
+03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 11)
+
+MAC Addresses:
+  bc:ee:7b:89:f2:2b
+
+--- CHASSIS / CASE ---
+	Manufacturer: Chassis Manufacture
+	Type: Desktop
+	Height: Unspecified
+
+--- POWER SUPPLY ---
+*** CANNOT DETECT VIA SOFTWARE ***
+Physically check the PSU label and note:
+  - Brand/Model:
+  - Wattage:
+  - 80 PLUS rating:
+  - Modular? (Yes/No):
+
+--- FULL PCI DEVICE LIST ---
+00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)
+00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)
+00:03.0 Audio device: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller (rev 06)
+00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)
+00:16.0 Communication controller: Intel Corporation 8 Series/C220 Series Chipset Family MEI Controller #1 (rev 04)
+00:1a.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #2 (rev 05)
+00:1b.0 Audio device: Intel Corporation 8 Series/C220 Series Chipset High Definition Audio Controller (rev 05)
+00:1c.0 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #1 (rev d5)
+00:1c.2 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #3 (rev d5)
+00:1c.6 PCI bridge: Intel Corporation 82801 PCI Bridge (rev d5)
+00:1d.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #1 (rev 05)
+00:1f.0 ISA bridge: Intel Corporation Z87 Express LPC Controller (rev 05)
+00:1f.2 SATA controller: Intel Corporation 8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode] (rev 05)
+00:1f.3 SMBus: Intel Corporation 8 Series/C220 Series Chipset Family SMBus Controller (rev 05)
+03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 11)
+04:00.0 PCI bridge: ASMedia Technology Inc. ASM1083/1085 PCIe to PCI Bridge (rev 03)
+
+--- HARDWARE TREE ---
+H/W path             Device     Class          Description
+==========================================================
+                                system         All Series (All)
+/0                              bus            Z87-A
+/0/0                            memory         64KiB BIOS
+/0/1                            memory         8GiB System memory
+/0/1/0                          memory         DIMM [empty]
+/0/1/1                          memory         8GiB DIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+/0/1/2                          memory         DIMM [empty]
+/0/1/3                          memory         DIMM [empty]
+/0/4c                           memory         256KiB L1 cache
+/0/4d                           memory         1MiB L2 cache
+/0/4e                           memory         6MiB L3 cache
+/0/52                           processor      Intel(R) Core(TM) i5-4690K CPU @ 3.50GHz
+/0/100                          bridge         4th Gen Core Processor DRAM Controller
+/0/100/1                        bridge         Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller
+/0/100/2             /dev/fb0   display        Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller
+/0/100/3             card0      multimedia     Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller
+/0/100/3/0           input6     input          HDA Intel HDMI HDMI/DP,pcm=3
+/0/100/3/1           input7     input          HDA Intel HDMI HDMI/DP,pcm=7
+/0/100/3/2           input8     input          HDA Intel HDMI HDMI/DP,pcm=8
+/0/100/14                       bus            8 Series/C220 Series Chipset Family USB xHCI
+/0/100/14/0          usb1       bus            xHCI Host Controller
+/0/100/14/0/4        input2     input          Logitech USB Optical Mouse
+/0/100/14/0/a                   input          Dell USB Entry Keyboard
+/0/100/14/0/b                   storage        Cruzer
+/0/100/14/1          usb3       bus            xHCI Host Controller
+/0/100/16                       communication  8 Series/C220 Series Chipset Family MEI Controller #1
+/0/100/1a                       bus            8 Series/C220 Series Chipset Family USB EHCI #2
+/0/100/1a/1          usb4       bus            EHCI Host Controller
+/0/100/1a/1/1                   bus            Integrated Rate Matching Hub
+/0/100/1b            card1      multimedia     8 Series/C220 Series Chipset High Definition Audio Controller
+/0/100/1b/0          input10    input          HDA Intel PCH Front Mic
+/0/100/1b/1          input11    input          HDA Intel PCH Line
+/0/100/1b/2          input12    input          HDA Intel PCH Line Out Front
+/0/100/1b/3          input13    input          HDA Intel PCH Line Out Surround
+/0/100/1b/4          input14    input          HDA Intel PCH Line Out CLFE
+/0/100/1b/5          input15    input          HDA Intel PCH Line Out Side
+/0/100/1b/6          input16    input          HDA Intel PCH Front Headphone
+/0/100/1b/7          input9     input          HDA Intel PCH Rear Mic
+/0/100/1c                       bridge         8 Series/C220 Series Chipset Family PCI Express Root Port #1
+/0/100/1c.2                     bridge         8 Series/C220 Series Chipset Family PCI Express Root Port #3
+/0/100/1c.2/0        enp3s0     network        RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller
+/0/100/1c.6                     bridge         82801 PCI Bridge
+/0/100/1c.6/0                   bridge         ASM1083/1085 PCIe to PCI Bridge
+/0/100/1d                       bus            8 Series/C220 Series Chipset Family USB EHCI #1
+/0/100/1d/1          usb2       bus            EHCI Host Controller
+/0/100/1d/1/1                   bus            Integrated Rate Matching Hub
+/0/100/1f                       bridge         Z87 Express LPC Controller
+/0/100/1f/0                     system         PnP device PNP0c01
+/0/100/1f/1                     system         PnP device PNP0c02
+/0/100/1f/2                     system         PnP device PNP0b00
+/0/100/1f/3                     system         PnP device PNP0c02
+/0/100/1f/4                     system         PnP device PNP0c02
+/0/100/1f/5                     communication  PnP device PNP0501
+/0/100/1f/6                     system         PnP device PNP0c02
+/0/100/1f.2          scsi0      storage        8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode]
+/0/100/1f.2/0.0.0    /dev/sda   disk           128GB Samsung SSD 850
+/0/100/1f.2/0.0.0/1  /dev/sda1  volume         99MiB Windows FAT volume
+/0/100/1f.2/0.0.0/2  /dev/sda2  volume         127MiB reserved partition
+/0/100/1f.2/0.0.0/3  /dev/sda3  volume         118GiB Windows NTFS volume
+/0/100/1f.2/0.0.0/4  /dev/sda4  volume         524MiB Windows NTFS volume
+/0/100/1f.3                     bus            8 Series/C220 Series Chipset Family SMBus Controller
+/0/2                 scsi7      storage
+/0/2/0.0.0           /dev/sdc   disk           61GB Cruzer
+/0/2/0.0.0/0         /dev/sdc   disk           61GB
+/0/2/0.0.0/0/1       /dev/sdc1  volume         57GiB HPFS/NTFS partition
+/0/2/0.0.0/0/2       /dev/sdc2  volume         32MiB Windows FAT volume
+/1                              power          To Be Filled By O.E.M.
+/2                   input0     input          Power Button
+/3                   input1     input          Power Button
+/4                   input3     input          DELL Dell USB Entry Keyboard
+/5                   input4     input          Eee PC WMI hotkeys
+/6                   input5     input          Video Bus
+
+=============================================
+ END ASSESSMENT — STATION78
+=============================================
