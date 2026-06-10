@@ -1,0 +1,127 @@
+=============================================
+ QualFab Station Assessment USB — Instructions
+ Jimmy Kalvitz | June 2026
+=============================================
+
+WHAT THIS USB DOES:
+  Boots any PC into Linux (no passwords needed), scans all
+  hardware, and saves a report to the USB. No internet required.
+
+WHAT YOU NEED:
+  - This USB drive
+  - Physical access to each machine
+  - A pen to jot down PSU info (can't be detected by software)
+
+=============================================
+ STEP-BY-STEP FOR EACH MACHINE
+=============================================
+
+1. PLUG IN the USB to the machine and POWER IT ON.
+
+2. HIT THE BOOT MENU KEY right away, before Windows loads.
+   Try these — one of them will work:
+     - F12  (Dell — most of your fleet)
+     - F9   (HP)
+     - F12  (Lenovo)
+     - ESC  (some Lenovo)
+   Mash the key repeatedly as soon as you see the manufacturer logo.
+
+3. SELECT THE USB from the boot menu.
+   It will say something like "USB" or "SanDisk Cruzer" or "UEFI: SanDisk".
+
+4. VENTOY MENU appears — select:
+     linuxmint-22.3-cinnamon-64bit.iso
+   Press Enter. Wait for Mint to load to the desktop (about 1-2 minutes).
+
+5. OPEN THE FILE MANAGER (folder icon on the taskbar).
+   Navigate to the USB drive. It will be in the left sidebar,
+   probably labeled "Ventoy" or the drive size.
+
+6. OPEN the "qualfab-assess" folder.
+
+7. DOUBLE-CLICK "run-assessment.sh"
+   - If asked "Run in terminal" or "Display" — choose RUN IN TERMINAL.
+   - It may ask for a password — just hit Enter (live session has no password)
+     or type "mint" if it insists.
+
+8. A POPUP APPEARS asking for the station hostname.
+   Type the station name, e.g.:  STATION90
+   Hit Enter.
+
+9. WAIT about 10 seconds. A "Done!" message appears.
+
+10. SHUT DOWN the machine (click the menu > Shut Down, or just hold power).
+
+11. MOVE TO THE NEXT MACHINE. Repeat steps 1-10.
+
+=============================================
+ AFTER ALL MACHINES ARE DONE
+=============================================
+
+All reports are saved on this USB in:
+  qualfab-assess/output/
+
+You'll see files like:
+  STATION90_hardware.txt
+  STATION91_hardware.txt
+  STATION92_hardware.txt
+  ...etc.
+
+Bring the USB home. Open each file and paste the contents
+into Claude. Claude will generate the full documentation
+package for each machine.
+
+=============================================
+ PSU — MANUAL CHECK PER MACHINE
+=============================================
+
+Before you shut down each machine, pop the side panel and
+look at the power supply label. Write down:
+  - Brand and model
+  - Wattage (e.g., 430W)
+  - 80 PLUS rating (White/Bronze/Gold/etc.)
+  - Connector types if you can tell
+
+You can jot this on paper or add it to the text file later.
+
+=============================================
+ TROUBLESHOOTING
+=============================================
+
+PROBLEM: Boot menu doesn't appear
+  - Try a different key (F2, F12, F9, ESC, DEL)
+  - Some machines need you to enter BIOS setup first and
+    change boot order to put USB first
+
+PROBLEM: Ventoy doesn't show the ISO
+  - Make sure linuxmint-22.3-cinnamon-64bit.iso is in the
+    root of the USB (not inside a folder)
+
+PROBLEM: Mint boots but can't find the USB in file manager
+  - Open a terminal (right-click desktop > Open Terminal)
+  - Type: lsblk
+  - Look for your USB partition (probably /dev/sda1)
+  - Mount it: sudo mount /dev/sda1 /mnt
+  - Then run: sudo bash /mnt/qualfab-assess/run-assessment.sh
+
+PROBLEM: "Permission denied" when running the script
+  - Open a terminal and run it manually:
+    sudo bash /path/to/qualfab-assess/run-assessment.sh
+
+PROBLEM: No popup appears (no zenity)
+  - That's fine — it falls back to a text prompt in the
+    terminal. Just type the hostname and press Enter.
+
+=============================================
+ USB CONTENTS
+=============================================
+
+Ventoy/
+├── linuxmint-22.3-cinnamon-64bit.iso  (Linux Mint live OS)
+├── qualfab-assess/
+│   ├── INSTRUCTIONS.txt               (this file)
+│   ├── run-assessment.sh              (double-click this)
+│   ├── station-assess.sh              (hardware scanner)
+│   └── output/                        (reports saved here)
+
+=============================================

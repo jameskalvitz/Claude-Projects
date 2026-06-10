@@ -1,9 +1,9 @@
 # Claude-Projects
 
-A collection of personal utility scripts and tools.
+Personal utility scripts and tools built with Claude Code.
 
 ## Projects
 
 | Project | Description |
 |---|---|
-| [usb-sysinfo](usb-sysinfo/) | Collect PC hardware info from a Ventoy USB live session (Linux Mint, fully offline) |
+| [usb-sysinfo](usb-sysinfo/) | QualFab PC decommission — hardware assessment via Ventoy USB + Linux Mint live boot, fully offline |

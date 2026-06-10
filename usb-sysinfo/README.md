@@ -1,62 +1,59 @@
-# usb-sysinfo
+# usb-sysinfo — QualFab Station Assessment Tool
 
-Collects PC hardware info when booted from a Ventoy USB running Linux Mint and saves the output back to the USB's own `output/` folder — no internet required.
+Hardware assessment scripts for the QualFab PC decommission project. Boots any machine from a Ventoy USB running Linux Mint, scans all hardware, and saves a report to the USB. Fully offline — no internet required.
 
 ## What it collects
 
-| Category | Tools used |
-|---|---|
-| CPU | `lscpu`, `/proc/cpuinfo` |
-| Memory | `free`, `/proc/meminfo`, `dmidecode` |
-| Storage | `lsblk`, `df`, `lshw`, `smartctl` |
-| Motherboard / BIOS | `dmidecode` (system, baseboard, bios, chassis, processor) |
-| GPU | `lspci`, `lshw`, `nvidia-smi` |
-| Network | `ip`, `lshw` |
-| USB | `lsusb`, `lshw` |
-| Boot mode | EFI vars via `efibootmgr` or BIOS note |
-| Sensors | `lm-sensors` |
-| Full hardware dump | `lshw -html` |
+| Category | Details | Tools |
+|---|---|---|
+| System ID | Manufacturer, model, service tag, BIOS date | `dmidecode` |
+| CPU | Model, cores/threads, clock, architecture, AVX2 support | `lscpu`, `/proc/cpuinfo` |
+| Memory | Per-DIMM: size, speed, type, manufacturer, part number, slot. Max capacity + total slots | `dmidecode`, `free` |
+| Storage | Model, serial, capacity, SSD vs HDD, SMART health | `lsblk`, `hdparm`, `smartctl` |
+| GPU | Model, VRAM region, Nvidia detection (for LLM screening) | `lspci` |
+| Motherboard | Manufacturer, model, serial | `dmidecode` |
+| Expansion slots | Slot types (x16/x8/x4/x1), usage status | `dmidecode` |
+| Optical drives | Model, read/write/Blu-ray capabilities | `/proc/sys/dev/cdrom/info` |
+| Network | NIC models, MAC addresses | `lspci`, `ip` |
+| Chassis | Type, manufacturer | `dmidecode` |
+| Full device list | All PCI devices + hardware tree | `lspci`, `lshw` |
 
-Tools are detected at runtime — sections are skipped gracefully if a tool isn't present on the live image.
+Only the **PSU** cannot be detected by software — check the label physically.
 
-## Setup (one-time, on the USB)
+## USB layout
 
 ```
-usb-sysinfo/
-├── usb-sysinfo.sh   ← the script
-└── output/          ← reports land here (created automatically)
+Ventoy/
+├── linuxmint-22.3-cinnamon-64bit.iso   (boots via Ventoy menu)
+├── qualfab-assess/
+│   ├── run-assessment.sh                (launcher — double-click this)
+│   ├── station-assess.sh                (hardware scanner)
+│   ├── INSTRUCTIONS.txt                 (step-by-step for use at work)
+│   └── output/                          (reports saved here)
 ```
-
-No installation needed. The script writes everything relative to its own directory, so it works wherever the USB is mounted.
 
 ## Usage
 
-Boot the target PC from the Ventoy USB into a Linux Mint live session, open a terminal, then:
+1. Plug USB into machine, power on, hit boot menu key (F12 Dell, F9 HP, F12 Lenovo)
+2. Select USB, pick Linux Mint from Ventoy menu
+3. Open file manager, navigate to USB, open `qualfab-assess/`
+4. Double-click `run-assessment.sh` — popup asks for hostname
+5. Type station name (e.g. `STATION90`), hit enter, wait ~10 seconds
+6. Shut down, move to next machine
 
-```bash
-# Navigate to the script on the USB (path will vary)
-cd /media/mint/VENTOY/usb-sysinfo   # adjust mount point as needed
+Reports save to `qualfab-assess/output/` as `STATIONXX_hardware.txt`.
 
-# Run as root for full hardware access (dmidecode, smartctl, etc.)
-sudo bash usb-sysinfo.sh
-```
+## LLM build screening
 
-Output files are saved to `output/` next to the script:
+Each assessment automatically checks:
+- CPU AVX2 support (required for Ollama/LLM inference)
+- Nvidia GPU present (yes/no)
+- GPU memory region size
 
-- `sysinfo_<hostname>_<timestamp>.txt` — main text report
-- `lshw_<hostname>_<timestamp>.html`   — full lshw HTML dump
+## Scripts
 
-## Finding the USB mount point
-
-```bash
-lsblk -o NAME,LABEL,MOUNTPOINT | grep -i ventoy
-# or
-findmnt -t vfat
-```
-
-## Notes
-
-- Fully offline — no packages are downloaded or installed.
-- Safe to run on a live session; nothing is written to the target machine's disks.
-- `smartctl` and `dmidecode` require root; the script proceeds without them if run unprivileged, but output will be incomplete.
-- If `lm-sensors` hasn't been run on this live session before, sensor readings may be absent. Run `sudo sensors-detect --auto` first if needed.
+| File | Purpose |
+|---|---|
+| `run-assessment.sh` | GUI launcher (zenity popup) with terminal fallback. Installs `smartmontools`/`hdparm`/`lshw` if missing in the live session. |
+| `station-assess.sh` | Core scanner. Pulls all hardware info and writes to a single text file. |
+| `usb-sysinfo.sh` | Original generic version (kept for reference). |
