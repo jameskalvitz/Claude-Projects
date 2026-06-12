@@ -33,3 +33,18 @@ See `station-reports/TRIAGE.md` for the full table. As of the last update:
 - **STATION53** — AMD FX-8300 (8c), no AVX2, has a discrete AMD FirePro V4900 GPU → leaning Retro Gaming; GPU could be a donor part
 
 See `docs/notes.md` for more detail, open follow-ups, and the **Cross-Reference Phase rules** (do not start any builds until all stations are assessed).
+
+## Home infrastructure
+
+Beyond the decommission project, this repo also tracks home lab infrastructure decisions. See `docs/notes.md` for details.
+
+**Tailnet (Tailscale):**
+- Surface (linux-mint-sb2): `100.104.139.84`
+- jkhomeserver: `100.105.103.112`
+- Jimmy's phone (gaboras-s22-ultra): `100.111.166.80`
+- MacBook: `100.118.236.43`
+
+**Phone backup pipeline (in progress):**
+- Galaxy S22 Ultra → Syncthing → jkhomeserver (`/mnt/rdisk/backups/jimmys-phone/`)
+- Syncthing installed and paired on both devices, WiFi-only sync
+- Still needs: folder configuration, first full backup, then phone wipe

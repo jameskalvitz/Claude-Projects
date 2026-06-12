@@ -4,6 +4,10 @@ Running log of decisions, gotchas, and follow-ups for the QualFab decommission p
 
 ## Infrastructure updates
 
+- **2026-06-12** — Phone backup pipeline started. Installed Syncthing on jkhomeserver (v1.18.0, systemd service `syncthing@jkhomeserver`, enabled on boot). Paired with Galaxy S22 Ultra (Syncthing on Android 16). Both devices have auto-accept folders ON. Backup destination: `/mnt/rdisk/backups/jimmys-phone/`. Phone set to WiFi-only sync. Still needs: Termius SSH profiles on phone, folder config, first full sync, verify, then wipe phone.
+  - Server Device ID: `KU52ZKF-YG62GMD-WFDGF2B-BI4ECXU-CUIMZND-HA5V2LB-6BJ5HTR-I7G7WAW`
+  - Phone Device ID: `AWVG2DF-7FQ4KPJ-HPEI4XB-O42ZM2D-5OJD3YP-E24U76R-YCXBTRN-G6RXMQ4`
+  - Server SSH: `jkhomeserver@100.105.103.112`
 - **2026-06-12** — Set up remote access to Surface (linux-mint-sb2) from work Windows PC via Tailscale. SSH (openssh-server) and xrdp both enabled and start on boot. Connect via Tailscale IP 100.104.139.84. Use `ssh jimmy@100.104.139.84` or `mstsc` (Remote Desktop) from Windows.
 - **2026-06-12** — Set up msmtp + mailx on Surface with Gmail (gaborarecords@gmail.com) for sending emails/alerts. Config at `~/.msmtprc`. jkhomeserver still needs same setup.
 - **2026-06-12** — Synced local Claude-Projects clone (`~/Claude-Projects/`) with GitHub — was 8 commits behind. Now current.
