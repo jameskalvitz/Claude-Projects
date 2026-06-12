@@ -2,6 +2,12 @@
 
 Running log of decisions, gotchas, and follow-ups for the QualFab decommission project. Add new entries at the top.
 
+## Infrastructure updates
+
+- **2026-06-12** — Set up remote access to Surface (linux-mint-sb2) from work Windows PC via Tailscale. SSH (openssh-server) and xrdp both enabled and start on boot. Connect via Tailscale IP 100.104.139.84. Use `ssh jimmy@100.104.139.84` or `mstsc` (Remote Desktop) from Windows.
+- **2026-06-12** — Set up msmtp + mailx on Surface with Gmail (gaborarecords@gmail.com) for sending emails/alerts. Config at `~/.msmtprc`. jkhomeserver still needs same setup.
+- **2026-06-12** — Synced local Claude-Projects clone (`~/Claude-Projects/`) with GitHub — was 8 commits behind. Now current.
+
 ## Cross-Reference Phase — Rules
 
 These rules govern how parts get matched across all stations once assessment is complete. **Do not begin any builds until ALL machines are assessed.**
