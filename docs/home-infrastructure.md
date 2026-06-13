@@ -13,7 +13,7 @@ All devices are connected via **Tailscale**, a mesh VPN that lets them talk to e
 | Device | Hostname | Tailscale IP | Role |
 |---|---|---|---|
 | Surface Laptop (Linux Mint) | linux-mint-sb2 | 100.104.139.84 | Daily driver / workstation |
-| Home Server | jkhomeserver | 100.105.103.112 | File storage, Syncthing, Plex (planned) |
+| Home Server | jkhomeserver | 100.105.103.112 | File storage, Syncthing, Plex |
 | Galaxy S22 Ultra | gaboras-s22-ultra | 100.111.166.80 | Phone — auto-syncs to server |
 | MacBook | — | 100.118.236.43 | Secondary machine |
 
@@ -155,6 +155,65 @@ ssh jkhomeserver@100.105.103.112 "ls -la /mnt/rdisk/backups/jimmys-phone/"
   ```bash
   ssh jkhomeserver@100.105.103.112 "sudo systemctl restart syncthing@jkhomeserver"
   ```
+
+---
+
+## Plex Media Server
+
+Plex runs on jkhomeserver in a Docker container (linuxserver/plex image), migrated from the old HP all-in-one on 2026-06-12.
+
+### Key Details
+
+| Setting | Value |
+|---|---|
+| Container | `linuxserver/plex` (Docker, host networking) |
+| Version | 1.43.2.10687 |
+| Plex account | kalvitz (kalvitzjames1@gmail.com) |
+| Web UI | `http://100.105.103.112:32400/web` |
+| Local IP | 192.168.68.124:32400 |
+| Docker network mode | host |
+| Process manager | s6-supervise |
+
+### Media Libraries
+
+Plex reads directly from the RAID array:
+- Movies: `/mnt/rdisk/media/movies/`
+- Music: `/mnt/rdisk/media/music/`
+
+### Remote Access
+
+Traditional UPnP/port-forwarding remote access does **not** work reliably — it briefly connects then drops. Instead, Plex is configured to use **Tailscale**:
+
+- Custom server access URL: `http://100.105.103.112:32400`
+- Allowed networks: `100.0.0.0/8` (Tailscale), `192.168.68.0/24` (home LAN)
+- Phone/external clients need **Tailscale running** to reach the server
+
+### Clients
+
+| Device | How it connects |
+|---|---|
+| Fire Sticks | Plex app on local network (192.168.68.124) |
+| Roku TV | Plex app on local network |
+| Phone (Galaxy S22 Ultra) | Plex app via Tailscale |
+
+### Troubleshooting
+
+```bash
+# Check if Plex is running
+ssh jkhomeserver@100.105.103.112 "docker ps | grep plex"
+
+# Restart Plex
+ssh jkhomeserver@100.105.103.112 "docker restart plex"
+
+# View Plex config
+ssh jkhomeserver@100.105.103.112 "docker exec plex cat '/config/Library/Application Support/Plex Media Server/Preferences.xml'"
+```
+
+### Known Issues
+
+- **Router UPnP flaps** — remote access via Plex's built-in method doesn't hold. Use Tailscale instead.
+- **No DHCP reservation** — jkhomeserver's IP (192.168.68.124) could change. Set a reservation in the Deco app.
+- **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed for Plex, can be decommissioned.
 
 ---
 
