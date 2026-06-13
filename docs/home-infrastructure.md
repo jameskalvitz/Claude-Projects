@@ -13,7 +13,7 @@ All devices are connected via **Tailscale**, a mesh VPN that lets them talk to e
 | Device | Hostname | Tailscale IP | Role |
 |---|---|---|---|
 | Surface Laptop (Linux Mint) | linux-mint-sb2 | 100.104.139.84 | Daily driver / workstation |
-| Home Server | jkhomeserver | 100.105.103.112 | File storage, Syncthing, Plex |
+| Home Server | jkhomeserver | 100.105.103.112 | File storage, Syncthing, Jellyfin |
 | Galaxy S22 Ultra | gaboras-s22-ultra | 100.111.166.80 | Phone — auto-syncs to server |
 | MacBook | — | 100.118.236.43 | Secondary machine |
 
@@ -232,9 +232,17 @@ docker run -d --name jellyfin --restart=unless-stopped \
   jellyfin/jellyfin:latest
 ```
 
+### Movie Library
+
+127 movies renamed on 2026-06-13 to proper `Movie Name (Year)/Movie Name (Year).ext` format using a Python script + TMDB API.
+
+Rename script: `/home/jkhomeserver/movie-renamer.py` on the server.
+
+**Skipped folders** (still in `/mnt/rdisk/media/movies/`, need manual sorting):
+Dave Chappelle, Volcom, Hold the line, The animation show, rips, Goosebumps, South park, Beetlejuice.mp4 (loose duplicate)
+
 ### Known Issues
 
-- **Movie naming** — many movies have non-standard folder/filenames. Jellyfin pulls wrong metadata. A rename script was built to fix this using TMDB API lookups. Target format: `Movie Name (Year)/Movie Name (Year).ext`
 - **No DHCP reservation** — jkhomeserver's IP (192.168.68.124) could change. Set a reservation in the Deco app.
 - **No external port forward yet** — remote access currently requires Tailscale. Port 8096 needs forwarding for non-Tailscale access.
 - **Old Plex container** — still present, can be removed with `docker stop plex && docker rm plex` once Jellyfin is confirmed.
