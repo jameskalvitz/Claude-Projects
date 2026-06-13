@@ -158,62 +158,87 @@ ssh jkhomeserver@100.105.103.112 "ls -la /mnt/rdisk/backups/jimmys-phone/"
 
 ---
 
-## Plex Media Server
+## Media Server — Jellyfin (replaced Plex)
 
-Plex runs on jkhomeserver in a Docker container (linuxserver/plex image), migrated from the old HP all-in-one on 2026-06-12.
+Jellyfin replaced Plex on 2026-06-13. Plex paywalled all remote video playback (app and web). Jellyfin is free, open source, no restrictions.
+
+Plex container is still on the server but will be removed once Jellyfin is fully confirmed working.
 
 ### Key Details
 
 | Setting | Value |
 |---|---|
-| Container | `linuxserver/plex` (Docker, host networking) |
-| Version | 1.43.2.10687 |
-| Plex account | kalvitz (kalvitzjames1@gmail.com) |
-| Web UI | `http://100.105.103.112:32400/web` |
-| Local IP | 192.168.68.124:32400 |
-| Docker network mode | host |
-| Process manager | s6-supervise |
+| Container | `jellyfin/jellyfin:latest` (Docker) |
+| Container name | `jellyfin` |
+| Web UI (local) | `http://192.168.68.124:8096` |
+| Web UI (Tailscale) | `http://100.105.103.112:8096` |
+| Config volume | `/mnt/rdisk/docker/jellyfin/config` |
+| Cache volume | `/mnt/rdisk/docker/jellyfin/cache` |
+| Restart policy | `unless-stopped` |
 
 ### Media Libraries
 
-Plex reads directly from the RAID array:
-- Movies: `/mnt/rdisk/media/movies/`
-- Music: `/mnt/rdisk/media/music/`
+Jellyfin reads directly from the RAID array (same folders Plex used):
+
+| Library | Server Path | Container Path |
+|---|---|---|
+| Movies | `/mnt/rdisk/media/movies/` | `/media/movies` |
+| TV Shows | `/mnt/rdisk/media/tv/` | `/media/tv` |
+| Music | `/mnt/rdisk/media/music/` | `/media/music` |
+| Home Videos | `/mnt/rdisk/media/home-videos/` | `/media/home-videos` |
 
 ### Remote Access
 
-Traditional UPnP/port-forwarding remote access does **not** work reliably — it briefly connects then drops. Instead, Plex is configured to use **Tailscale**:
-
-- Custom server access URL: `http://100.105.103.112:32400`
-- Allowed networks: `100.0.0.0/8` (Tailscale), `192.168.68.0/24` (home LAN)
-- Phone/external clients need **Tailscale running** to reach the server
+- Via **Tailscale**: `http://100.105.103.112:8096` (works now)
+- Via **port forward**: needs router config for port 8096 (TODO)
+- Phone app: **Jellyfin** from Play Store, server address `http://100.105.103.112:8096`
 
 ### Clients
 
 | Device | How it connects |
 |---|---|
-| Fire Sticks | Plex app on local network (192.168.68.124) |
-| Roku TV | Plex app on local network |
-| Phone (Galaxy S22 Ultra) | Plex app via Tailscale |
+| Fire Sticks | Jellyfin app on local network (192.168.68.124:8096) |
+| Roku TV | Jellyfin app on local network |
+| Phone (Galaxy S22 Ultra) | Jellyfin app via Tailscale |
 
-### Troubleshooting
+### Docker Commands
 
 ```bash
-# Check if Plex is running
-ssh jkhomeserver@100.105.103.112 "docker ps | grep plex"
+# Check if Jellyfin is running
+ssh jkhomeserver@100.105.103.112 "docker ps | grep jellyfin"
 
-# Restart Plex
-ssh jkhomeserver@100.105.103.112 "docker restart plex"
+# Restart Jellyfin
+ssh jkhomeserver@100.105.103.112 "docker restart jellyfin"
 
-# View Plex config
-ssh jkhomeserver@100.105.103.112 "docker exec plex cat '/config/Library/Application Support/Plex Media Server/Preferences.xml'"
+# View logs
+ssh jkhomeserver@100.105.103.112 "docker logs jellyfin --tail 30"
+
+# Full container recreation (if needed)
+ssh jkhomeserver@100.105.103.112 "docker stop jellyfin && docker rm jellyfin"
+# Then re-run the docker run command from below
+```
+
+### Container Create Command (for reference)
+
+```bash
+docker run -d --name jellyfin --restart=unless-stopped \
+  -p 8096:8096 \
+  -v /mnt/rdisk/docker/jellyfin/config:/config \
+  -v /mnt/rdisk/docker/jellyfin/cache:/cache \
+  -v /mnt/rdisk/media/movies:/media/movies \
+  -v /mnt/rdisk/media/tv:/media/tv \
+  -v /mnt/rdisk/media/music:/media/music \
+  -v /mnt/rdisk/media/home-videos:/media/home-videos \
+  jellyfin/jellyfin:latest
 ```
 
 ### Known Issues
 
-- **Router UPnP flaps** — remote access via Plex's built-in method doesn't hold. Use Tailscale instead.
+- **Movie naming** — many movies have non-standard folder/filenames. Jellyfin pulls wrong metadata. A rename script was built to fix this using TMDB API lookups. Target format: `Movie Name (Year)/Movie Name (Year).ext`
 - **No DHCP reservation** — jkhomeserver's IP (192.168.68.124) could change. Set a reservation in the Deco app.
-- **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed for Plex, can be decommissioned.
+- **No external port forward yet** — remote access currently requires Tailscale. Port 8096 needs forwarding for non-Tailscale access.
+- **Old Plex container** — still present, can be removed with `docker stop plex && docker rm plex` once Jellyfin is confirmed.
+- **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed, can be decommissioned.
 
 ---
 
