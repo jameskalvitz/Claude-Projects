@@ -62,7 +62,9 @@ The server has a **5.5 TB RAID array** mounted at `/mnt/rdisk`.
 ├── backups/
 │   ├── jimmys-phone/          ← live Syncthing sync from phone
 │   ├── S22-Ultra-backup-06-12-2026/  ← one-time full phone backup
-│   └── SamsungPhone/          ← older phone backup
+│   ├── SamsungPhone/          ← older phone backup
+│   ├── Dads Computer/         ← dad's old PC backup (5.3 GB)
+│   └── dads-iphone/           ← dad's iPhone 15 Plus backup via PhotoSync (5.6 GB, 2,085 files)
 ├── Downloads/
 ├── media/
 │   ├── movies/
@@ -248,6 +250,42 @@ Rename script: `/home/jkhomeserver/movie-renamer.py` on the server.
 - **No external port forward yet** — remote access currently requires Tailscale. Port 8096 needs forwarding for non-Tailscale access.
 - **Old Plex container** — still present, can be removed with `docker stop plex && docker rm plex` once Jellyfin is confirmed.
 - **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed, can be decommissioned.
+
+---
+
+## Dad's iPhone Backup (PhotoSync over SMB)
+
+Dad's iPhone 15 Plus backs up to the server via SMB using the **PhotoSync** app (free tier).
+
+### Key Details
+
+| Setting | Value |
+|---|---|
+| Phone | iPhone 15 Plus |
+| Model Number | MTXR3LL/A |
+| Serial | KQ7FQD7MP9 |
+| iOS | 26.5 |
+| App | PhotoSync (free tier) |
+| Protocol | SMB to jkhomeserver |
+| Server path | `/mnt/rdisk/backups/dads-iphone/` |
+| Files transferred | 2,085 files, 5.6 GB |
+| Transfer date | 2026-06-14 |
+
+### Folder Structure
+
+```
+/mnt/rdisk/backups/dads-iphone/iPhone/
+├── Portrait/
+├── Videos/
+├── Recents/
+└── Selfies/
+```
+
+### Notes
+
+- Tried a paid app first (Mobius or similar) but it required a subscription for batch photo transfers
+- PhotoSync handled the full bulk transfer over SMB for free
+- PhotoSync can be used again anytime to sync new photos to the server
 
 ---
 
