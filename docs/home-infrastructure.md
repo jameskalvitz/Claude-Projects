@@ -238,8 +238,9 @@ docker run -d --name jellyfin --restart=unless-stopped \
 
 Rename script: `/home/jkhomeserver/movie-renamer.py` on the server.
 
-**Skipped folders** (still in `/mnt/rdisk/media/movies/`, need manual sorting):
-Dave Chappelle, Volcom, Hold the line, The animation show, rips, Goosebumps, South park, Beetlejuice.mp4 (loose duplicate)
+**Cleanup (2026-06-13):** Fixed wrong years (30 Min or Less→2011, The Border→1982), split Goosebumps into 3 folders, moved Hold the Line to home-videos (personal band video), renamed Volcom→Chichagof, properly named Dave Chappelle standup, deleted empty rips folder and Beetlejuice.mp4 duplicate.
+
+**Remaining unsorted:** South park, The animation show (still in movies folder). The River King (2005) file is corrupted (moov atom not found) — needs fresh copy.
 
 ### Known Issues
 
