@@ -289,6 +289,69 @@ Dad's iPhone 15 Plus backs up to the server via SMB using the **PhotoSync** app 
 
 ---
 
+## UPS Power Protection
+
+The server is on an APC UPS with automatic safe shutdown via `apcupsd`.
+
+### Hardware
+
+| Setting | Value |
+|---|---|
+| UPS Model | APC Back-UPS ES 600M1 |
+| Serial | 0B2231N05429 |
+| Connection | USB |
+| Capacity | 330 Watts |
+| Battery Date | 2022-07-26 (~4 years old, consider replacing soon) |
+| Current Load | ~41% (135W) |
+| Runtime on Battery | ~15 minutes at current load |
+
+### Shutdown Behavior
+
+`apcupsd` monitors the UPS. When power fails and battery gets critical, it triggers a graceful shutdown:
+
+1. Battery hits **5%** OR **3 minutes remaining**
+2. Custom script `/etc/apcupsd/doshutdown` runs:
+   - Stops all Docker containers gracefully (30s timeout)
+   - Stops Syncthing cleanly
+   - Syncs all filesystems to disk
+   - Logs every step to `/var/log/apcupsd.events`
+3. System performs clean shutdown
+
+### On Reboot (after power returns)
+
+Everything auto-starts:
+- Docker → Jellyfin (restart policy: unless-stopped)
+- Syncthing (systemd: enabled)
+- Samba (systemd: enabled)
+- SSH (systemd: enabled)
+
+**Note:** Server does NOT auto-power-on after power loss — requires BIOS setting "Restore on AC Power Loss" → "Power On". TODO for a future session.
+
+### apcupsd Config
+
+```
+UPSNAME homeups1
+UPSCABLE usb
+UPSTYPE usb
+ONBATTERYDELAY 6
+BATTERYLEVEL 5
+MINUTES 3
+```
+
+### Checking UPS Status
+
+```bash
+ssh jkhomeserver@100.105.103.112 "apcaccess status"
+```
+
+### Viewing Power Events
+
+```bash
+ssh jkhomeserver@100.105.103.112 "cat /var/log/apcupsd.events"
+```
+
+---
+
 ## Email Alerts (msmtp)
 
 The Surface is configured to send emails via Gmail using `msmtp + mailx`.
