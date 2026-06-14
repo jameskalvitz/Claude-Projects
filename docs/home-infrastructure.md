@@ -164,7 +164,7 @@ ssh jkhomeserver@100.105.103.112 "ls -la /mnt/rdisk/backups/jimmys-phone/"
 
 Jellyfin replaced Plex on 2026-06-13. Plex paywalled all remote video playback (app and web). Jellyfin is free, open source, no restrictions.
 
-Plex container is still on the server but will be removed once Jellyfin is fully confirmed working.
+Plex container was removed on 2026-06-14. Config preserved at `/mnt/rdisk/docker/plex/config/` in case it's ever needed.
 
 ### Key Details
 
@@ -192,7 +192,7 @@ Jellyfin reads directly from the RAID array (same folders Plex used):
 ### Remote Access
 
 - Via **Tailscale**: `http://100.105.103.112:8096` (works now)
-- Via **port forward**: needs router config for port 8096 (TODO)
+- Via **port forward**: intentionally skipped — keeping Jellyfin behind Tailscale only for security
 - Phone app: **Jellyfin** from Play Store, server address `http://100.105.103.112:8096`
 
 ### Clients
@@ -242,13 +242,13 @@ Rename script: `/home/jkhomeserver/movie-renamer.py` on the server.
 
 **Cleanup (2026-06-13):** Fixed wrong years (30 Min or Less→2011, The Border→1982), split Goosebumps into 3 folders, moved Hold the Line to home-videos (personal band video), renamed Volcom→Chichagof, properly named Dave Chappelle standup, deleted empty rips folder and Beetlejuice.mp4 duplicate.
 
-**Remaining unsorted:** South park, The animation show (still in movies folder). The River King (2005) file is corrupted (moov atom not found) — needs fresh copy.
+**Cleanup (2026-06-14):** South Park renamed to `South Park - Bigger, Longer & Uncut (1999)`, The Animation Show split into `Vol. 1 (2003)` and `Vol. 2 (2005)`, The River King (2005) deleted (was corrupted).
 
 ### Known Issues
 
 - **~~No DHCP reservation~~** — DONE. jkhomeserver has a reservation in Deco. Other reservations: alfredscave, driveway ipcam, living room pc, tl-sg105e switches (basement/loft/studio).
-- **No external port forward yet** — remote access currently requires Tailscale. Port 8096 needs forwarding for non-Tailscale access.
-- **Old Plex container** — still present, can be removed with `docker stop plex && docker rm plex` once Jellyfin is confirmed.
+- **No external port forward** — intentional decision (2026-06-14). Keeping Jellyfin behind Tailscale only for security.
+- **~~Old Plex container~~** — removed 2026-06-14. Config preserved at `/mnt/rdisk/docker/plex/config/`.
 - **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed, can be decommissioned.
 
 ---
