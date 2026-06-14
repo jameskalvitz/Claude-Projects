@@ -294,8 +294,9 @@ Dad's iPhone 15 Plus backs up to the server via SMB using the **PhotoSync** app 
 The Surface is configured to send emails via Gmail using `msmtp + mailx`.
 
 - Gmail account: `gaborarecords@gmail.com`
-- Config file: `~/.msmtprc`
-- Server (jkhomeserver) still needs this set up
+- Config file: `~/.msmtprc` (on both Surface and server)
+- **Surface:** fully working (tested 2026-06-12)
+- **Server:** msmtp v1.8.16 installed 2026-06-14, config written, needs test send
 
 ### Test It
 
