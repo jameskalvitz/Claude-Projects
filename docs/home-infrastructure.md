@@ -243,7 +243,7 @@ Dave Chappelle, Volcom, Hold the line, The animation show, rips, Goosebumps, Sou
 
 ### Known Issues
 
-- **No DHCP reservation** — jkhomeserver's IP (192.168.68.124) could change. Set a reservation in the Deco app.
+- **~~No DHCP reservation~~** — DONE. jkhomeserver has a reservation in Deco. Other reservations: alfredscave, driveway ipcam, living room pc, tl-sg105e switches (basement/loft/studio).
 - **No external port forward yet** — remote access currently requires Tailscale. Port 8096 needs forwarding for non-Tailscale access.
 - **Old Plex container** — still present, can be removed with `docker stop plex && docker rm plex` once Jellyfin is confirmed.
 - **Old HP all-in-one** (192.168.68.121) — still exists, no longer needed, can be decommissioned.
